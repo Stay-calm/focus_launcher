@@ -51,6 +51,9 @@ class Utils {
                     ri.activityInfo.applicationInfo.loadLabel(pm) as String,
                     ri.activityInfo.applicationInfo.packageName
                 )
+                if (app.packageName == context.packageName){
+                    continue
+                }
                 val selected = selectedApps?.contains(
                     AppDrawerInfo(
                         app,

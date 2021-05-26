@@ -1,16 +1,12 @@
 package com.easyapps.focusmode.launcher.apppage
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,14 +15,11 @@ import com.easyapps.focusmode.launcher.LauncherAdapter
 import com.easyapps.focusmode.launcher.R
 import com.easyapps.focusmode.launcher.viewModel.AppInfoVMFactory
 import com.easyapps.focusmode.launcher.viewModel.AppInfoViewModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AppDrawerFragment : Fragment() {
 
     val sharedVM: AppInfoViewModel by activityViewModels {
-        AppInfoVMFactory(activity!!.application)
+        AppInfoVMFactory(requireActivity().application)
     }
 
     companion object {
@@ -57,7 +50,7 @@ class AppDrawerFragment : Fragment() {
     private fun initView(view: View) {
         val appList = view.findViewById<RecyclerView>(R.id.list_view)
         var adapter: LauncherAdapter? = null
-        sharedVM.appInfoList.observe(this, Observer {
+        sharedVM.appInfoList.observe(viewLifecycleOwner, Observer {
             if (it.count() > 0) {
                 hideProgress(view)
             }

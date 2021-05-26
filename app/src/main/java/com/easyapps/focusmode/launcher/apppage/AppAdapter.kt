@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.easyapps.focusmode.launcher.AppDrawerInfo
 import com.easyapps.focusmode.launcher.R
+import com.easyapps.focusmode.launcher.utils.Utils
 
 class AppAdapter(val set: MutableSet<AppDrawerInfo>) :
     RecyclerView.Adapter<AppAdapter.ViewHolder>() {
@@ -42,12 +43,17 @@ class AppAdapter(val set: MutableSet<AppDrawerInfo>) :
         val appInfo = appInfoSet.elementAt(position)
         holder.bind(appInfo)
         val isSelected = selectedAppList.contains(AppDrawerInfo(appInfo.appInfo,true))
-        holder.updateCheckBoxVisibility(isSelected)
+        val preSelectedList = Utils.getExceptionList(holder.itemView.context)
+        val isPreselect =  preSelectedList.contains(appInfo.appInfo.packageName)
+        holder.updateCheckBoxVisibility(isSelected || isPreselect)
+        holder.checkBox.isEnabled = !isPreselect
+        holder.itemView.isEnabled = !isPreselect
+
         holder.itemView.setOnClickListener {
             if (!holder.checkBox.isChecked && selectedAppList.count() >= 6) {
                 Toast.makeText(
                     holder.itemView.context,
-                    "Max Number of Apps selected",
+                    "Max 6 apps can be used in focus mode",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
