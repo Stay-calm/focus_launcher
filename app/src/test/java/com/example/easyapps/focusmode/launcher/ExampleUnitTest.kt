@@ -1,4 +1,4 @@
-package com.example.easyapps.focusmode.launcher
+package com.easyapps.focusmode.launcher
 
 import org.junit.Test
 

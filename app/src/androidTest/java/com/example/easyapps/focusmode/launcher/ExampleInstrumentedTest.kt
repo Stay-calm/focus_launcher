@@ -1,4 +1,4 @@
-package com.example.easyapps.focusmode.launcher
+package com.easyapps.focusmode.launcher
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.easyapps.focusmode.launcher", appContext.packageName)
+        assertEquals("com.easyapps.focusmode.launcher", appContext.packageName)
     }
 }

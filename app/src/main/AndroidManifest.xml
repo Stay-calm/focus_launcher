@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.easyapps.focusmode.launcher">
+    package="com.easyapps.focusmode.launcher">
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -45,7 +45,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <service android:name="com.example.easyapps.focusmode.launcher.notification.NotificationListener"
+        <service android:name="com.easyapps.focusmode.launcher.notification.NotificationListener"
             android:label="@string/service_name"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
