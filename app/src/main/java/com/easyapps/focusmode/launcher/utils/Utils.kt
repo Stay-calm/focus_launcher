@@ -500,6 +500,34 @@ class Utils {
         fun isNotificationListenerPermissionGranted(applicationContext: Context): Boolean {
             return NotificationManagerCompat.getEnabledListenerPackages(applicationContext).contains(applicationContext.packageName)
         }
+
+        fun getPickerHourOfDay(context: Context,start: Boolean): Int {
+            return if (start) {
+                getSPInt(
+                    context,
+                    START_HOUR
+                )
+            } else {
+                getSPInt(
+                    context,
+                    END_HOUR
+                )
+            }
+        }
+
+        fun getPickerMinuteOofDay(context: Context, start: Boolean): Int {
+            return if (start) {
+                getSPInt(
+                    context,
+                    START_MIN
+                )
+            } else {
+                getSPInt(
+                    context,
+                    END_MIN
+                )
+            }
+        }
     }
 
 }

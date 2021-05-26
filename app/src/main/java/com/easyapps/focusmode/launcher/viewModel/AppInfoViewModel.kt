@@ -21,7 +21,7 @@ class AppInfoViewModel(val application: Application) : ViewModel() {
                     )
                 )
             }
-            Handler(Looper.getMainLooper()).post(runnable);
+            Handler(Looper.myLooper()!!).post(runnable);
         }
     }
 

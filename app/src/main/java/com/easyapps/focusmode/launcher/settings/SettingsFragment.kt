@@ -155,8 +155,8 @@ class SettingsFragment : Fragment() {
                     sharedVm.updateCurrentProgress(it.context)
                 }
             },
-            0,
-            0,
+            Utils.getPickerHourOfDay(requireContext(), start),
+            Utils.getPickerMinuteOofDay(requireContext(), start),
             true
         )
         picker.show()
