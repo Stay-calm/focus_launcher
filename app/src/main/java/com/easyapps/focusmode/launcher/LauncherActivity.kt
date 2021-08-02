@@ -22,6 +22,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
+import java.lang.IllegalStateException
 
 
 /**
@@ -111,7 +112,12 @@ class LauncherActivity : AppCompatActivity(), HomeFragment.Interaction,
 
     override fun onStop() {
         super.onStop()
-        startService(Intent(this, ReadAppStateService::class.java))
+        try {
+            startService(Intent(this, ReadAppStateService::class.java))
+        } catch (e: IllegalStateException) {
+
+        }
+
     }
 
     override fun onRestart() {

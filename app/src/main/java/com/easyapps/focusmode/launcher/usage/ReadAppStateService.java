@@ -102,7 +102,7 @@ public class ReadAppStateService extends Service {
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            if (Utils.Companion.getFocusProgress(ReadAppStateService.this) < 100.0) {
+            if (Utils.Companion.getFocusProgress(ReadAppStateService.this) >= 100.0) {
                 stopSelf();
                 return;
             }
@@ -119,6 +119,8 @@ public class ReadAppStateService extends Service {
             if (appDrawerInfo != null && !Utils.Companion.getExhaustiveSelectedApps(ReadAppStateService.this).contains(appDrawerInfo)) {
                 FocusUtil.INSTANCE.updateNotification(ReadAppStateService.this, appDrawerInfo.getAppInfo().getPackageName());
                 time = DateUtils.MINUTE_IN_MILLIS;
+            }else{
+                FocusUtil.INSTANCE.clearReminderNotification(ReadAppStateService.this);
             }
             localHandler.postDelayed(this,time);
         }

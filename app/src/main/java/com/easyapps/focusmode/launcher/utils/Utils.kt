@@ -148,16 +148,21 @@ class Utils {
         }
 
 
-        fun getDialer(context: Context): String {
-            val dialingIntent = Intent(Intent.ACTION_DIAL).addCategory(Intent.CATEGORY_DEFAULT)
-            val resolveInfoList = context.packageManager.queryIntentActivities(dialingIntent, 0)
-            if (resolveInfoList.size == 1) {
-                return resolveInfoList[0].activityInfo.packageName
+        private fun getDialer(context: Context): String {
+            val dialingIntentDefault = Intent(Intent.ACTION_DIAL).addCategory(Intent.CATEGORY_DEFAULT)
+            val resolveInfoListDefault = context.packageManager.queryIntentActivities(dialingIntentDefault, 0)
+            if (resolveInfoListDefault.size > 0) {
+                return resolveInfoListDefault[0].activityInfo.packageName
             }
+            val dialingIntent = Intent(Intent.ACTION_DIAL)
+            val resolveInfoList = context.packageManager.queryIntentActivities(dialingIntent, 0)
             resolveInfoList.forEach {
                 if (it.isDefault) {
                     return it.activityInfo.packageName
                 }
+            }
+            if (resolveInfoList.size <= 0) {
+                return ""
             }
             return resolveInfoList[0].activityInfo.packageName
         }
